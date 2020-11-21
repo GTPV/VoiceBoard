@@ -1,3 +1,12 @@
+import keyboard
+def type(stringToType):
+    keyboard.write(stringToType)
+def moveCursorHorizontal(amountToMoveCursor):
+    if (amountToMoveCursor > 0):
+        for i in range(0,amountToMoveCursor,1):
+    elif (amountToMoveCursor < 0):
+        for i in range(0,amountToMoveCursor,-1):
+
 def typePrint():
         print("printf("")")
 
