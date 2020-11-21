@@ -22,28 +22,14 @@ class CursorController:
 Cursor = CursorController()
 
 
-'''
-def moveCursorLeft(amountToMoveCursor):
-        for i in range(amountToMoveCursor):
-                keyboard.press(Key.left)
-
-def moveCursorRight(amountToMoveCursor):
-        for i in range(amountToMoveCursor):
-                keyboard.press(Key.right)
-
-def moveCursorUp(amountToMoveCursor):
-    for i in range(amountToMoveCursor):
-        keyboard.press(Key.up)
-
-def moveCursorDown(amountToMoveCursor):
-    for i in range(amountToMoveCursor):
-        keyboard.press(Key.down)
-'''
 
 
-def typePrint():
-        typeInput("printf("")")
-        Cursor.Left(2)
+def typePrint(*StringToPrint):
+    if StringToPrint[0] == "":
+        typeInput("printf(\"\\n\");")
+        Cursor.Left(5)
+    else:
+        typeInput("printf(\"" + StringToPrint[0] + "\n\");")
 
 def defineVariable(variableType, variableName):
         typeInput(variableType+" = "+variableName)
@@ -61,3 +47,24 @@ def typeRepsIf(reps):
 def typeElse():
         typeInput("else{}")
         Cursor.Left(1)
+
+
+
+
+'''
+def moveCursorLeft(amountToMoveCursor):
+        for i in range(amountToMoveCursor):
+                keyboard.press(Key.left)
+
+def moveCursorRight(amountToMoveCursor):
+        for i in range(amountToMoveCursor):
+                keyboard.press(Key.right)
+
+def moveCursorUp(amountToMoveCursor):
+    for i in range(amountToMoveCursor):
+        keyboard.press(Key.up)
+
+def moveCursorDown(amountToMoveCursor):
+    for i in range(amountToMoveCursor):
+        keyboard.press(Key.down)
+'''
