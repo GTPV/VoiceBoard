@@ -20,7 +20,18 @@ class CursorController:
                 for i in range(amountToMoveCursor):
                         keyboard.press(Key.down)
 
+
+class SpecialSymbol:
+    LessThan = "<"
+    BiggerThan = ">"
+    Plus = "+"
+    Times = "×"
+    Divide = "/"
+    Equal = "="
+    Underbar = "_"
+
 Cursor = CursorController()
+SpecialSymbol = SpecualSymbol()
 
 
 
