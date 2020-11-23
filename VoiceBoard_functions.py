@@ -1,4 +1,4 @@
-import SpeechRecognition
+import speech_recognition as sr
 from pynput.keyboard import Key,Controller
 keyboard = Controller()
 
