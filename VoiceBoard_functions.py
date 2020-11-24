@@ -2,6 +2,13 @@ import speech_recognition as sr
 from pynput.keyboard import Key,Controller
 keyboard = Controller()
 
+def audioInput():
+    speechRecognizer = sr.Recognizer()
+    mic = sr.Microphone()
+    with mic as source:
+        AudioInput = speechRecognizer.listen(source)
+    return speechRecognizer.recognize_google(AudioInput)
+
 
 def typeInput(stringToType):
     keyboard.type(stringToType)
@@ -31,7 +38,7 @@ class SpecialSymbol:
     Underbar = "_"
 
 Cursor = CursorController()
-SpecialSymbol = SpecualSymbol()
+SpecialSymbol = SpecialSymbol()
 
 
 

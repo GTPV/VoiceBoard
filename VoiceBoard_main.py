@@ -1,7 +1,7 @@
 import VoiceBoard_functions.py
 
 while(True):
-    VoiceInput = input()
+    VoiceInput = audioInput()
     VoiceInputList = VoiceInput.split()
 
     VoiceKeyword = VoiceInputList[0]
