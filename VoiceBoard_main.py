@@ -1,15 +1,16 @@
-import VoiceBoard_functions.py
+import VoiceBoard_functions as vf
 
 while(True):
-    VoiceInput = audioInput()
+    #VoiceInput = vf.audioInput()
+    VoiceInput = input()
     VoiceInputList = VoiceInput.split()
 
     VoiceKeyword = VoiceInputList[0]
 
     if(VoiceKeyword == "print"):
         StringToPrint = ""
-        for i in range(1, VoiceInputList.len(), 1):
+        for i in range(1, len(VoiceInputList), 1):
             StringToPrint += VoiceInputList[i]
             StringToPrint += " "
-        StringToPrint -= " "
-        typePrint(StringToPrint)
+        StringToPrint = StringToPrint[:-1]
+        vf.typePrint(StringToPrint)

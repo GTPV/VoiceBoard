@@ -1,31 +1,38 @@
 import speech_recognition as sr
-from pynput.keyboard import Key,Controller
-keyboard = Controller()
+#from pynput.keyboard import Key,Controller
+#keyboard = Controller()
 
 def audioInput():
-    speechRecognizer = sr.Recognizer()
-    mic = sr.Microphone()
-    with mic as source:
-        AudioInput = speechRecognizer.listen(source)
-    return speechRecognizer.recognize_google(AudioInput)
+    SpeechRecognizer = sr.Recognizer()
+    Mic = sr.Microphone()
+    with Mic as source:
+        AudioInput = SpeechRecognizer.listen(source)
+    return SpeechRecognizer.recognize_google(AudioInput)
 
 
 def typeInput(stringToType):
-    keyboard.type(stringToType)
+    #keyboard.type(stringToType)
+    print(stringToType)
+
+def keyboardPress(KeyToPress):
+    keyboard.press(KeyToPress)
+    print(KeyToPress)
 
 class CursorController:
         def Left(self, amountToMoveCursor):
-                for i in range(amountToMoveCursor):
-                        keyboard.press(Key.left)
+            self.Move(amountToMoveCursor, Key.left)
         def Right(self, amountToMoveCursor):
-                for i in range(amountToMoveCursor):
-                        keyboard.press(Key.right)
+            self.Move(amountToMoveCursor, Key.right)
         def Up(self, amountToMoveCursor):
-                for i in range(amountToMoveCursor):
-                        keyboard.press(Key.up)
+            self.Move(amountToMoveCursor, Key.up)
         def Down(self, amountToMoveCursor):
-                for i in range(amountToMoveCursor):
-                        keyboard.press(Key.down)
+            self.Move(amountToMoveCursor, Key.down)
+        def Move(self, amountToMoveCursor, KeyToPress):
+            for i in range(amountToMoveCursor):
+                #keyboardPress(KeyToPress)
+                print(KeyToPress)
+Cursor = CursorController()
+
 
 
 class SpecialSymbol:
@@ -36,8 +43,6 @@ class SpecialSymbol:
     Divide = "/"
     Equal = "="
     Underbar = "_"
-
-Cursor = CursorController()
 SpecialSymbol = SpecialSymbol()
 
 
@@ -45,10 +50,10 @@ SpecialSymbol = SpecialSymbol()
 
 def typePrint(*StringToPrint):
     if StringToPrint[0] == "":
-        typeInput("printf(\"\\n\");")
+        typeInput("printf(\"\");")
         Cursor.Left(5)
     else:
-        typeInput("printf(\"" + StringToPrint[0] + "\n\");")
+        typeInput("printf(\""+StringToPrint[0]+"\\"+"n\""+");")
 
 def defineVariable(variableType, variableName):
         typeInput(variableType+" = "+variableName)
