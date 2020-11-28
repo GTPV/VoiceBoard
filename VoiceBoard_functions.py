@@ -71,10 +71,18 @@ class CaseController:
         return newString
 
 
-    def EliminateSpace(self, stringList):
+    def MergeWithoutSpace(self, stringList):
         newString = ""
         for i in range(len(stringList)):
             newString += stringList[i]
+        return newString
+
+    def MergeAddSpace(self, stringList):
+        newString = ""
+        for i in range(len(stringList)-1):
+            newString += stringList[i]
+            newString += " "
+        newString += stringList[-1]
         return newString
 
 CaseController = CaseController()
@@ -96,16 +104,17 @@ def defineVariable(*varstats):
     Name = 2
     InitValue = 3
     if(varstats[Case] == "none"):
-        varName = CaseController.EliminateSpace(varstats[Name])
+        varName = CaseController.MergeWithoutSpace(varstats[Name])
     elif(varstats[Case] == "Camel"):
         varName = CaseController.Camel(varstats[Name])
     else:
-        varName = CaseController.EliminateSpace(varstats[Name])
+        varName = CaseController.MergeWithoutSpace(varstats[Name])
 
     typeInput(varstats[Type] + " " + varName)
 
     if(len(varstats) == 4):
-        typeInput(" = " + varstats[3])
+        varInitValue = CaseController.MergeAddSpace(varstats[3])
+        typeInput(" = " + varInitValue)
 
     typeInput(";\n")
 

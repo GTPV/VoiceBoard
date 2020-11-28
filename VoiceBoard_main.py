@@ -22,7 +22,7 @@ while(True):
             if "initialize" in VoiceInputList:
                 InitializerIndex = VoiceInputList.index("initialize")
                 variableName = VoiceInputList[4:InitializerIndex]
-                initialValue = VoiceInputList[InitializerIndex+1]
+                initialValue = VoiceInputList[InitializerIndex+1:]
                 vf.defineVariable(variableType, variableCase, variableName, initialValue) 
             else:
                 variableName = VoiceInputList[4:]
