@@ -11,12 +11,28 @@ def audioInput():
 
 
 def typeInput(stringToType):
-    #keyboard.type(stringToType)
-    print(stringToType)
+    #keyboardType(stringToType)
+    #print(stringToType)
+    textfileType(stringToType)
+
+def textfileType(stringToType):
+    testdotcpp = open("testdotcpp.txt", 'a')
+    testdotcpp.write(stringToType)
+    testdotcpp.close()
+
+
+
+
+def keyboardType(stringToType):
+    keyboard.type(stringToType)
 
 def keyboardPress(KeyToPress):
     keyboard.press(KeyToPress)
-    print(KeyToPress)
+    #print(KeyToPress)
+
+
+
+
 
 class CursorController:
         def Left(self, amountToMoveCursor):
@@ -45,6 +61,24 @@ class SpecialSymbol:
     Underbar = "_"
 SpecialSymbol = SpecialSymbol()
 
+class CaseController:
+    def Camel(self, stringList):
+        newString = ""
+        for i in range(1, len(stringList)):
+            stringList[i] = stringList[i].capitalize()
+        for i in range(len(stringList)):
+            newString += stringList[i]
+        return newString
+
+
+    def EliminateSpace(self, stringList):
+        newString = ""
+        for i in range(len(stringList)):
+            newString += stringList[i]
+        return newString
+
+CaseController = CaseController()
+
 
 
 
@@ -53,24 +87,43 @@ def typePrint(*StringToPrint):
         typeInput("printf(\"\");")
         Cursor.Left(5)
     else:
-        typeInput("printf(\""+StringToPrint[0]+"\\"+"n\""+");")
+        typeInput("printf(\""+StringToPrint[0]+"\\"+"n\""+");"+"\n")
 
-def defineVariable(variableType, variableName):
-        typeInput(variableType+" = "+variableName)
+def defineVariable(*varstats):
+    #*varstats = [Type, Case, Name, InitValue]
+    Type = 0
+    Case = 1
+    Name = 2
+    InitValue = 3
+    if(varstats[Case] == "none"):
+        varName = CaseController.EliminateSpace(varstats[Name])
+    elif(varstats[Case] == "Camel"):
+        varName = CaseController.Camel(varstats[Name])
+    else:
+        varName = CaseController.EliminateSpace(varstats[Name])
+
+    typeInput(varstats[Type] + " " + varName)
+
+    if(len(varstats) == 4):
+        typeInput(" = " + varstats[3])
+
+    typeInput(";\n")
+
+#def defineFunction(*func):
 
 
 def typeClassicIf(initialCondition, terminalCondition, changeCondition):
-        typeInput("if("+initialCondition+";"+terminalCondition+";"+changeCondition+"){}")
-        Cursor.Left(1)
+    typeInput("if("+initialCondition+";"+terminalCondition+";"+changeCondition+"){}")
+    Cursor.Left(1)
 
 
 def typeRepsIf(reps):
-        typeInput("if(int i = 0; i < "+reps+"; i++){}")
-        Cursor.Left(1)
+    typeInput("if(int i = 0; i < "+reps+"; i++){}")
+    Cursor.Left(1)
 
 def typeElse():
-        typeInput("else{}")
-        Cursor.Left(1)
+    typeInput("else{}")
+    Cursor.Left(1)
 
 
 
