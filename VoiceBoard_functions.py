@@ -28,26 +28,36 @@ def keyboardType(stringToType):
 
 def keyboardPress(KeyToPress):
     keyboard.press(KeyToPress)
-    #print(KeyToPress)
 
 
 
 
 
 class CursorController:
-        def Left(self, amountToMoveCursor):
-            self.Move(amountToMoveCursor, Key.left)
-        def Right(self, amountToMoveCursor):
-            self.Move(amountToMoveCursor, Key.right)
-        def Up(self, amountToMoveCursor):
-            self.Move(amountToMoveCursor, Key.up)
-        def Down(self, amountToMoveCursor):
-            self.Move(amountToMoveCursor, Key.down)
-        def Move(self, amountToMoveCursor, KeyToPress):
-            for i in range(amountToMoveCursor):
-                #keyboardPress(KeyToPress)
-                print(KeyToPress)
-Cursor = CursorController()
+    def Left(self, amountToMoveCursor):
+        self.Move(amountToMoveCursor, Key.left)
+    def Right(self, amountToMoveCursor):
+        self.Move(amountToMoveCursor, Key.right)
+    def Up(self, amountToMoveCursor):
+        self.Move(amountToMoveCursor, Key.up)
+    def Down(self, amountToMoveCursor):
+        self.Move(amountToMoveCursor, Key.down)
+    def Move(self, amountToMoveCursor, KeyToPress):
+        for i in range(amountToMoveCursor):
+            keyboardPress(KeyToPress)
+class PseudoCursorController:
+    def Left(self, amountToMoveCursor):
+        self.Move(amountToMoveCursor, 'Key.left')
+    def Right(self, amountToMoveCursor):
+        self.Move(amountToMoveCursor, 'Key.right')
+    def Up(self, amountToMoveCursor):
+        self.Move(amountToMoveCursor, 'Key.up')
+    def Down(self, amountToMoveCursor):
+        self.Move(amountToMoveCursor, 'Key.down')
+    def Move(self, amountToMoveCursor, KeyToPress):
+        for i in range(amountToMoveCursor):
+            print(KeyToPress)
+Cursor = PseudoCursorController()
 
 
 
@@ -60,6 +70,9 @@ class SpecialSymbol:
     Equal = "="
     Underbar = "_"
 SpecialSymbol = SpecialSymbol()
+
+
+
 
 class CaseController:
     def Camel(self, stringList):
@@ -79,12 +92,15 @@ class CaseController:
 
     def MergeAddSpace(self, stringList):
         newString = ""
+        if len(stringList) == 0:
+            return newString
+        elif len(stringList) == 1:
+            return stringList[0]
         for i in range(len(stringList)-1):
             newString += stringList[i]
             newString += " "
         newString += stringList[-1]
         return newString
-
 CaseController = CaseController()
 
 
@@ -93,7 +109,7 @@ CaseController = CaseController()
 def typePrint(*StringToPrint):
     if StringToPrint[0] == "":
         typeInput("printf(\"\");")
-        Cursor.Left(5)
+        Cursor.Left(3)
     else:
         typeInput("printf(\""+StringToPrint[0]+"\\"+"n\""+");"+"\n")
 
@@ -103,9 +119,9 @@ def defineVariable(*varstats):
     Case = 1
     Name = 2
     InitValue = 3
-    if(varstats[Case] == "none"):
+    if(varstats[Case].lower() == "none"):
         varName = CaseController.MergeWithoutSpace(varstats[Name])
-    elif(varstats[Case] == "Camel"):
+    elif(varstats[Case].lower() == "camel"):
         varName = CaseController.Camel(varstats[Name])
     else:
         varName = CaseController.MergeWithoutSpace(varstats[Name])
@@ -121,14 +137,22 @@ def defineVariable(*varstats):
 #def defineFunction(*func):
 
 
-def typeClassicIf(initialCondition, terminalCondition, changeCondition):
-    typeInput("if("+initialCondition+";"+terminalCondition+";"+changeCondition+"){}")
+def typeClassicFor(*conditions):
+    Initial = 0
+    Terminal = 1
+    Change = 2
+    typeInput("for("+CaseController.MergeAddSpace(conditions[Initial])+";"+CaseController.MergeAddSpace(conditions[Terminal])+";"+CaseController.MergeAddSpace(conditions[Change])+"){}")
     Cursor.Left(1)
 
 
-def typeRepsIf(reps):
-    typeInput("if(int i = 0; i < "+reps+"; i++){}")
+def typeRepsFor(reps):
+    typeInput("for(int i = 0; i < "+reps+"; i++){}")
     Cursor.Left(1)
+
+def typeIf(*condition):
+    if(condition == ()):
+        typeInput("if(){}")
+        Cursor.Left(3)
 
 def typeElse():
     typeInput("else{}")
