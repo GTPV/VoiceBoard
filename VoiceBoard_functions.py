@@ -30,6 +30,10 @@ def keyboardPress(KeyToPress):
     keyboard.press(KeyToPress)
 
 
+def closeCurlyBracket():
+    typeInput("}")
+
+
 
 
 
@@ -75,6 +79,7 @@ SpecialSymbol = SpecialSymbol()
 
 
 class CaseController:
+
     def Camel(self, stringList):
         newString = ""
         for i in range(1, len(stringList)):
@@ -141,22 +146,25 @@ def typeClassicFor(*conditions):
     Initial = 0
     Terminal = 1
     Change = 2
-    typeInput("for("+CaseController.MergeAddSpace(conditions[Initial])+";"+CaseController.MergeAddSpace(conditions[Terminal])+";"+CaseController.MergeAddSpace(conditions[Change])+"){}")
-    Cursor.Left(1)
+    typeInput("for("+CaseController.MergeAddSpace(conditions[Initial])+";"+CaseController.MergeAddSpace(conditions[Terminal])+";"+CaseController.MergeAddSpace(conditions[Change])+"){")
+    #Cursor.Left(1)
 
 
 def typeRepsFor(reps):
-    typeInput("for(int i = 0; i < "+reps+"; i++){}")
-    Cursor.Left(1)
+    typeInput("for(int i = 0; i < "+reps+"; i++){")
+    #Cursor.Left(1)
 
 def typeIf(*condition):
     if(condition == ()):
-        typeInput("if(){}")
-        Cursor.Left(3)
+        typeInput("if(){")
+        #Cursor.Left(1))
+    else:
+        typeInput("if(" + condition[0] + "){")
+        #Cursor.Left(1)
 
 def typeElse():
-    typeInput("else{}")
-    Cursor.Left(1)
+    typeInput("else{")
+    #Cursor.Left(1)
 
 
 
