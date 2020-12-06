@@ -139,10 +139,11 @@ def defineVariable(*varstats):
 
     typeInput(";\n")
 
-#def defineFunction(*func):
+def defineFunction(*func):
 
 
 def typeClassicFor(*conditions):
+    #*conditions = (initial condition words list, terminal'', change'')
     Initial = 0
     Terminal = 1
     Change = 2

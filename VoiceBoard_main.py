@@ -52,6 +52,8 @@ def main():
                     variableName = VoiceInputList[4:]
                     vf.defineVariable(variableType, variableCase, variableName)
 
+            elif(VoiceInputListLower[1] == "functions"):
+
 
 
 
